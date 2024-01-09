@@ -1,8 +1,11 @@
+import java.util.HashSet;
+import java.util.Set;
+
 /** String processing exercise 2. */
 public class UniqueChars {
     public static void main(String[] args) {
         //String str = args[0];
-        String str = "helllllllllllo";
+        String str = "hheellregeroohhhhhhweeeeeeeezyw";
         System.out.println(uniqueChars(str));
     }
 
@@ -11,61 +14,29 @@ public class UniqueChars {
      * except that all the duplicate characters are removed,
      * unless they are space characters.
      */
+
     public static String uniqueChars(String s) {
-        return null;
+        char testLetter = ' ';
+        String newString = "";
+        Set<Integer> numberList = new HashSet<Integer>();
+        int count = 0;
+        for (int i = 0; i< s.length();i++ ) {
+            System.out.println(i +":" + s.charAt(i) + " : " + testLetter);
+            testLetter = s.charAt(i);
+            for (int j = i + 1;j < s.length();j++) {
+                if (s.indexOf(testLetter, j) > 0) {
+                    System.out.println(s.indexOf(testLetter, j));
+                    numberList.add(s.indexOf(testLetter, j));
+                }
+            }
+        }
+        for (int i =0; i < s.length();i++) {
+            if (!numberList.contains(i)) {
+                newString+=s.charAt(i);
+            }
+        }
+        return newString;
 
     }
 }
-       /*
-        // Replace the following statement with your code
-        int[] numsToIgnore = new int[s.length()];
-        int iterate = 0;
-        String UniqueString = String.valueOf(s.charAt(0));
-        char testLetter = s.charAt(0);
-        for (int i = 0; i < s.length();i++) {
-            if (i+1 <s.length()) {
-                for (int j = i+1;j<s.length()-1;j++){
 
-                        for (int c = 0; c < numsToIgnore.length;c++) {
-                            if (testLetter == s.charAt(j)) {
-                                if (c == numsToIgnore[j]) {
-                                    numsToIgnore[iterate] = j;
-                                    System.out.println(testLetter + " : " + s.charAt(j));
-                                    iterate++;
-                                }
-                            }
-                        }
-
-                    }
-                }
-            }
-
-            testLetter = s.charAt(i);
-        }
-        for (int i = 0;i<s.length();i++){
-            boolean isIn = false;
-            for (int j = 0; j < numsToIgnore.length;j++) {
-                if (i == numsToIgnore[j]) {
-                    isIn = true;
-                }
-            }
-            if (!isIn) {
-                UniqueString += s.charAt(i);
-            }
-        }
-        return UniqueString;
-
-
-
-
-
-
-
-
-
-
-
-
-    */
-
-}
