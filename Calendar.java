@@ -5,10 +5,8 @@ public class Calendar {
     // Starting the calendar on 1/1/1900
 	static int dayOfMonth = 1;
 	static int month = 1;
-	static int year = 1900;
-	static int dayOfWeek = 2;     // 1.1.1900 was a Monday
+	static int year;
 	static int nDaysInMonth = 31; // Number of days in January
-	static int numOfASpecialSundays = 0;
 
 	/**
 	 * Prints the calendars of all the years in the 20th century. Also prints the
@@ -18,47 +16,20 @@ public class Calendar {
 		// Advances the date and the day-of-the-week from 1/1/1900 till 31/12/1999, inclusive.
 	    // Prints each date dd/mm/yyyy in a separate line. If the day is a Sunday, prints "Sunday".
 	    // The following variable, used for debugging purposes, counts how many days were advanced so far.
-	    int debugDaysCounter = 0;
-		int n = -1; //debug count
+		year = Integer.parseInt(args[0]);
+		int nextYear = year + 1;
 	    //// Write the necessary initialization code, and replace the condition
 	    //// of the while loop with the necessary condition
-	 	while (year != 2000) {
-	 		//// Write the body of the while
-	 		System.out.print(dayOfMonth + "/" + month + "/" + year + " ");
-			 if (dayOfWeek == 1) {
-				 System.out.print(getWeekDay(dayOfWeek));
-				 if (dayOfMonth == 1){
-					numOfASpecialSundays++;
-				 }
-			 }
-
-	 		advance();
-	 		debugDaysCounter++;
-	 		//// If you want to stop the loop after n days, replace the condition of the
-	 		//// if statement with the condition (debugDaysCounter == n)
-	 		if (debugDaysCounter == n) {
-	 			break;
-	 		}
-			 System.out.println();
-        }
-	 	//// Write the necessary ending code here
-		System.out.println("During the 20th century, " + numOfASpecialSundays + " Sundays fell on the first day of the month");
-	 	//System.out.println("The number of days that were advanced is " + debugDaysCounter);
-
+	 	while (year != nextYear) {
+			System.out.println(dayOfMonth + "/" + month + "/" + year + " ");
+			advance();
+		}
 	 }
 	 //Added my own function to get day of the week simpler
-	 private static String getWeekDay(int day){
-		String[] daysOfWeek = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-		return daysOfWeek[day-1];
-	 }
 	 // Advances the date (day, month, year) and the day-of-the-week.
 	 // If the month changes, sets the number of days in this month.
 	 // Side effects: changes the static variables dayOfMonth, month, year, dayOfWeek, nDaysInMonth.
 	 private static void advance() {
-		dayOfWeek++;
-		if (dayOfWeek == 8) {
-			 dayOfWeek = 1;
-		}
 		dayOfMonth++;
 		if (dayOfMonth > nDaysInMonth) {
 			dayOfMonth = 1;
